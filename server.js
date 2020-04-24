@@ -16,20 +16,11 @@ app.use(express.static("public"));
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 
-//mongoose.connect(
-//process.env.MONGODB_URI || "mongodb://localhost/custommethoddb",
-//{ useNewUrlParser: true }
-//);
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/custommethoddb",
+  { useNewUrlParser: true }
+);
 
-var MONGODB_URI = process.env.MONGODB_URL || "mongodb://localhost/dbName";
-const options = {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-  family: 4, // Use IPv4, skip trying IPv6
-};
-mongoose.connect(MONGODB_URI, options);
-
-app.listen(process.env.PORT, () => {
-  console.log(`App running on port ${PORT}!`);
+app.listen(process.env.PORT || 8080, () => {
+  console.log(`App running on port ${process.env.PORT || 8080}!`);
 });
