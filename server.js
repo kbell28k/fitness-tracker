@@ -30,6 +30,6 @@ const options = {
 };
 mongoose.connect(MONGODB_URI, options);
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
   console.log(`App running on port ${PORT}!`);
 });
